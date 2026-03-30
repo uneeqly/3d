@@ -2,15 +2,68 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
-  <title>AR Model</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body style="margin:0; display:flex; justify-content:center; align-items:center; height:100vh; background:#f5f5f5;">
+  <title>Henry AR</title>
 
-  <a rel="ar" href="https://github.com/uneeqly/3d/raw/refs/heads/main/Henry.usdz">
-    <img src="https://via.placeholder.com/300x300?text=Zobrazit+v+AR" 
-         alt="Zobrazit v AR" 
-         style="width:300px; height:300px; border-radius:20px;">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0f0f10;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .ar-card {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      transition: transform 0.2s ease;
+    }
+
+    .ar-card:active {
+      transform: scale(0.98);
+    }
+
+    .ar-card img {
+      display: block;
+      width: 320px;
+      max-width: 90vw;
+      height: auto;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent 50%);
+    }
+
+    .button {
+      margin-bottom: 20px;
+      background: white;
+      color: black;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <a class="ar-card" rel="ar" href="Henry.usdz">
+    <img src="preview.jpg" alt="Zobrazit v AR">
+
+    <div class="overlay">
+      <div class="button">Zobrazit v AR</div>
+    </div>
   </a>
 
 </body>
