@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Johann AR</title>
+
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #0f0f10;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .center {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .ar-card {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      display: inline-block;
+    }
+
+    .ar-card img {
+      display: block;
+      width: 320px;
+      max-width: 90vw;
+      height: auto;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent 50%);
+      pointer-events: none;
+    }
+
+    .button {
+      margin-bottom: 20px;
+      background: white;
+      color: black;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    model-viewer {
+      width: 100vw;
+      height: 100vh;
+      background: #f4f4f4;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="iosView" class="center" style="display:none;">
+    <a class="ar-card" rel="ar" href="johann.usdz">
+      <img src="preview.jpg" alt="Zobrazit Johanna v AR">
+      <div class="overlay">
+        <div class="button">Zobrazit v AR</div>
+      </div>
+    </a>
+  </div>
+
+  <model-viewer
+    id="modelViewer"
+    src="johann.glb"
+    ios-src="johann.usdz"
+    poster="preview.jpg"
+    alt="Johann 3D model"
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    camera-controls
+    auto-rotate
+    shadow-intensity="1"
+    exposure="1"
+    autoplay>
+  </model-viewer>
+
+  <script>
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const isIOS = /iPad|iPhone|iPod/.test(ua) || 
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+    if (isIOS) {
+      document.getElementById('iosView').style.display = 'flex';
+    } else {
+      document.getElementById('modelViewer').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
